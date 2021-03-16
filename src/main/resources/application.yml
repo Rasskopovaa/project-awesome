@@ -1,0 +1,10 @@
+server:
+  port: 9080
+
+logging:
+  level:
+    org.springframework: ERROR
+    ru.innopolis.stc31.appeal: DEBUG
+  pattern:
+    console: "[%-5level] %d{HH:mm:ss.SSS} g:%X{guid} o:%X{oper} [%-26logger{26}:%L]: %m%wEx%n"
+
