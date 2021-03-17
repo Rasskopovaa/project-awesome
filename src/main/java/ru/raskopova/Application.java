@@ -1,4 +1,4 @@
-package ru.bass2000;
+package ru.raskopova;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

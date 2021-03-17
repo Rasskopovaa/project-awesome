@@ -8,3 +8,9 @@ logging:
   pattern:
     console: "[%-5level] %d{HH:mm:ss.SSS} g:%X{guid} o:%X{oper} [%-26logger{26}:%L]: %m%wEx%n"
 
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/BookShop
+    username: postgres
+    password: postgres
+

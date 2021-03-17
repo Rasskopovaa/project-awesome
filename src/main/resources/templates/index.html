@@ -6,6 +6,16 @@
 </head>
 
 <body>
-<div th:text="${bookName}"></div>
+<div>
+    <table>
+        <th> ID</th>
+        <th> Book name</th>
+        <tr th:each="book: ${bookList}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.bookName}"></td>
+        </tr>
+
+    </table>
+</div>
 </body>
 </html>
