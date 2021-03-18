@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 
 <head>
-    <title>My awesome application</title>
+    <title>Главная страница</title>
 </head>
 
 <body>
 <div>
     <table>
-        <th> ID</th>
         <th> Book name</th>
         <tr th:each="book: ${bookList}">
-            <td th:text="${book.id}"></td>
             <td th:text="${book.bookName}"></td>
         </tr>
-
     </table>
+    <a href="/create">
+        <button type="submit">Добавить книгу</button>
+    </a>
 </div>
 </body>
 </html>
