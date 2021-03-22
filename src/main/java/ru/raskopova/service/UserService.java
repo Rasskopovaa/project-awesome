@@ -4,8 +4,10 @@ import ru.raskopova.model.dto.UserDTO;
 import ru.raskopova.model.entity.User;
 
 public interface UserService {
-    User addUser(UserDTO userDTO);
+    public void addUser(String username, String password);
 
     User findByUsername(String username);
+
+    //public String confirmPassword(String password, String password2);
 
 }

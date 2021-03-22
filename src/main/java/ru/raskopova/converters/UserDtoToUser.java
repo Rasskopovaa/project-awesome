@@ -12,6 +12,7 @@ public class UserDtoToUser implements Converter<UserDTO, User> {
     public User convert(UserDTO source) {
         return new User()
                 .setUsername(source.getUsername())
-                .setPassword(source.getPassword());
+                .setPassword(source.getPassword())
+                .setRoleId(source.getRoleId());
     }
 }

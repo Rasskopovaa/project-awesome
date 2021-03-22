@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <title>Добавление новой книги</title>
 </head>
 <body>
+<a href="/getAllBook">
+    <form action="/getAllBook">
+        <button name="Получить список книг">
+            <table>
+                <th> Book name</th>
+                <tr th:each="book: ${bookList}">
+                    <td th:text="${book.bookName}"></td>
+                </tr>
+            </table>
+        </button>
+
+</a>
+</form>
 <form method="post" action="/create">
     <input type="text" id="bookName" name="bookName"><BR>
     <input type="submit" value="Добавить">

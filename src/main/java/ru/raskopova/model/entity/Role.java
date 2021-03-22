@@ -6,21 +6,15 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
-
 @Entity
 @Data
-@Table(name = "users")
+@Table(name = "roles")
 @Accessors(chain = true)
-public class User {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "username")
-    String username;
-    @Column(name = "password")
-    String password;
-    @Column(name = "role_id")
-    int roleId;
-
+    @Column(name = "role_name")
+    private String roleName;
 
 }
