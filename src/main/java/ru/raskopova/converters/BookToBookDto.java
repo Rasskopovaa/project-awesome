@@ -8,6 +8,12 @@ import ru.raskopova.model.entity.Book;
 
 @Component
 public class BookToBookDto implements Converter<Book, BookDTO> {
+    /**
+     * конвертирует Book в BookDTO
+     *
+     * @param book
+     * @return
+     */
     @Override
     public BookDTO convert(Book book) {
         return new BookDTO()
