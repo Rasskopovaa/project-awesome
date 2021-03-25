@@ -19,9 +19,14 @@ public class BaseController {
     private final BookService bookService;
 
     @GetMapping("/")
+    public String main(Model model) {
+        return "index";
+    }
+
+    @GetMapping("/getAllBook")
     public String getAllBook(Model model) {
         model.addAttribute("bookList", bookService.getAllBooks());
-        return "index";
+        return "addBook";
     }
 
     @PostMapping("/create")
