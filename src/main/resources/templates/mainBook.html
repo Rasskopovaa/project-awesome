@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post">
+    <input type="text" th:value="${book.bookName}" id="bookName" name="bookName"><BR>
+    <input type="submit" value="Обновить">
+</form>
+
+<form method="post" th:action="@{/getBook/{id}/remove(id=${book.getId()})}">
+    <button type="submit"> Удалить</button>
+</form>
+
+</body>
+</html>

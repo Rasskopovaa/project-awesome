@@ -14,6 +14,8 @@ public interface BookService {
      */
     List<BookDTO> getAllBooks();
 
+    Book getBookById(Integer id);
+
     /**
      * добавляет новую книгу
      *
@@ -21,4 +23,8 @@ public interface BookService {
      * @return
      */
     Book addBook(BookDTO bookDTO);
+
+    Book updateBook(String name, Integer id);
+
+    void deleteBook(Integer id);
 }

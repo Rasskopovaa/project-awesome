@@ -8,20 +8,20 @@
 <body>
 <a href="/getAllBook">
     <form action="/getAllBook">
-        <button name="Получить список книг">
-            <table>
-                <th> Book name</th>
-                <tr th:each="book: ${bookList}">
-                    <td th:text="${book.bookName}"></td>
-                </tr>
-            </table>
-        </button>
-
+        <h3>Список книг</h3>
+        <ul th:each="book: ${bookList}">
+            <a th:href="@{/getBook/{id}/edit(id=${book.getId()})}">
+                <li th:text="${book.getBookName()}"></li>
+            </a>
+        </ul>
+    </form>
 </a>
-</form>
-<form method="post" action="/create">
+
+<form method="post" action="/createBook">
     <input type="text" id="bookName" name="bookName"><BR>
-    <input type="submit" value="Добавить">
+    <input type="submit" value="Добавить"> <BR>
 </form>
+
+
 </body>
 </html>

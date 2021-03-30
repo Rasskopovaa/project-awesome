@@ -19,8 +19,8 @@ public class User {
     String username;
     @Column(name = "password")
     String password;
-    @Column(name = "role_id")
-    int roleId;
+    @OneToOne
+    Role role;
 
 
 }
