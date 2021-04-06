@@ -1,9 +1,8 @@
 package ru.raskopova.controller;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +14,13 @@ import ru.raskopova.service.UserService;
 public class RegistrationController {
     private final UserService userService;
     @GetMapping("/register")
-    public String mainPage() {
+    public String registrationPage() {
         return "registration";
     }
 
     @PostMapping("/register")
-    public String createUser(@ModelAttribute("userForm") UserDTO userDTO
-            , BindingResult bindingResult
-            , @RequestParam(value = "username") String username
+    public String createUser(@ModelAttribute("userForm") UserDTO userDTO,
+                             @RequestParam(value = "username") String username
             , @RequestParam(value = "password") String password
             , @RequestParam(value = "passwordConfirm") String passwordConfirm, Model model) {
 
@@ -30,13 +28,12 @@ public class RegistrationController {
             model.addAttribute("passwordError", "Пароли не совпадают!");
             return "registration";
         }
-        if (userService.findByUsername(username) != null) {
+        if ((userService.getByUsername(username).isPresent())) {
             model.addAttribute("loginError", "Такой пользователь уже есть!");
             return "registration";
         }
         userService.addUser(username, password);
         return "addBook";
+
     }
-
-
 }

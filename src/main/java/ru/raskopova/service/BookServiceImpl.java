@@ -1,4 +1,5 @@
 package ru.raskopova.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
@@ -7,10 +8,9 @@ import ru.raskopova.model.dto.BookDTO;
 import ru.raskopova.model.entity.Book;
 import ru.raskopova.repository.BookRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +32,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getBookById(Integer id) {
-        return bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        return optionalBook.get();
     }
 
     @Override
@@ -42,14 +43,14 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book updateBook(String name, Integer id) {
-        Book book = bookRepository.findById(id).orElseThrow();
+        Book book = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         book.setBookName(name);
         return bookRepository.save(book);
     }
 
     @Override
     public void deleteBook(Integer id) {
-        Book book = bookRepository.findById(id).orElseThrow();
+        Book book = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         bookRepository.delete(book);
     }
 

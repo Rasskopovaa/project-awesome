@@ -12,15 +12,14 @@ import ru.raskopova.service.UserService;
 @RequiredArgsConstructor
 public class AuthorizationController {
     private final UserService userService;
-
     @PostMapping("/authorization")
     public String authorizeUser(@RequestParam(value = "username") String username
             , @RequestParam(value = "password") String password, Model model) {
-        if (userService.checkAuth(username, password)) {
-            return "addBook";
+        if (!(userService.validateCredentials(username, password))) {
+            model.addAttribute("authError", "Неверный логин или пароль");
+            return "authorization";
         }
-        model.addAttribute("authError", "Неверный логин или пароль");
-        return "authorization";
+        return "addBook";
     }
 
     @GetMapping("/authorization")

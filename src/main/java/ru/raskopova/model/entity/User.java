@@ -14,13 +14,14 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "username")
     String username;
     @Column(name = "password")
     String password;
-    @OneToOne
-    Role role;
+    @OneToOne()
+    @JoinColumn(name = "role_id")
+    Role userRole;
 
 
 }
