@@ -11,5 +11,6 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class BookDTO {
+    private Integer id;
     private String bookName;
 }

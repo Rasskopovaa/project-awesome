@@ -15,7 +15,7 @@ import ru.raskopova.service.UserService;
 public class RegistrationController {
     private final UserService userService;
     @GetMapping("/register")
-    public String mainForm() {
+    public String mainPage() {
         return "registration";
     }
 
@@ -35,8 +35,8 @@ public class RegistrationController {
             return "registration";
         }
         userService.addUser(username, password);
-
         return "addBook";
     }
+
 
 }

@@ -1,6 +1,5 @@
 package ru.raskopova.service;
 
-import ru.raskopova.model.dto.UserDTO;
 import ru.raskopova.model.entity.User;
 
 public interface UserService {
@@ -19,4 +18,13 @@ public interface UserService {
      * @return
      */
     User findByUsername(String username);
+
+    /**
+     * проверяет есть ли такой юзер в бд при авторизации
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    public boolean checkAuth(String username, String password);
 }

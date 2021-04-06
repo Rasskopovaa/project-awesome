@@ -16,7 +16,7 @@ public class BookToBookDto implements Converter<Book, BookDTO> {
      */
     @Override
     public BookDTO convert(Book book) {
-        return new BookDTO()
+        return new BookDTO().setId(book.getId())
                 .setBookName(book.getBookName());
     }
 }
