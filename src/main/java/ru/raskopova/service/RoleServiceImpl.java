@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.raskopova.model.entity.Role;
 import ru.raskopova.repository.RoleRepository;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
@@ -14,5 +17,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role addRole(Role role) {
         return roleRepository.save(role);
+    }
+
+    @Override
+    public Set<Role> getAllRoles() {
+        return roleRepository.findAll().stream().collect(Collectors.toSet());
     }
 }

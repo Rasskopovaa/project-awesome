@@ -14,6 +14,12 @@ public interface BookService {
      */
     List<BookDTO> getAllBooks();
 
+    /**
+     * возвращает книгу
+     *
+     * @param id
+     * @return
+     */
     Book getBookById(Integer id);
 
     /**
@@ -24,7 +30,19 @@ public interface BookService {
      */
     Book addBook(BookDTO bookDTO);
 
+    /**
+     * обновляет книгу
+     *
+     * @param name
+     * @param id
+     * @return
+     */
     Book updateBook(String name, Integer id);
 
+    /**
+     * удаляет книгу
+     *
+     * @param id
+     */
     void deleteBook(Integer id);
 }

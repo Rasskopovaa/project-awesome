@@ -6,13 +6,12 @@ import ru.raskopova.model.dto.UserDTO;
 import ru.raskopova.model.entity.User;
 
 @Component
-public class UserDtoToUser implements Converter<UserDTO, User> {
+public class UserToUserDto implements Converter<User, UserDTO> {
 
     @Override
-    public User convert(UserDTO source) {
-        return new User()
-                .setUsername(source.getUsername())
+    public UserDTO convert(User source) {
+        return new UserDTO().setUsername(source.getUsername())
                 .setPassword(source.getPassword())
-                .setUserRole(source.getRole());
+                .setRole(source.getUserRole());
     }
 }

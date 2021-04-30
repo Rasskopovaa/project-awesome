@@ -1,10 +1,14 @@
 package ru.raskopova.service;
 
+import ru.raskopova.model.dto.UserDTO;
 import ru.raskopova.model.entity.User;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     /**
-     * добавляет юсера в бд
+     * добавляет юзера в бд
      *
      * @param username
      * @param password
@@ -17,14 +21,30 @@ public interface UserService {
      * @param username
      * @return
      */
-    User findByUsername(String username);
+    Optional<User> getByUsername(String username);
 
     /**
-     * проверяет есть ли такой юзер в бд при авторизации
+     * проверяет есть ли такой юзер в бд при авторизации,проверяет введённый пароль
      *
      * @param username
      * @param password
      * @return
      */
-    public boolean checkAuth(String username, String password);
+    public boolean validateCredentials(String username, String password);
+
+    /**
+     * возвращает список юзеров
+     *
+     * @return
+     */
+    List<UserDTO> getAllUsers();
+
+    /**
+     * обновляет роль юзера
+     *
+     * @param username
+     * @param role
+     * @return
+     */
+    User updateUserRole(String username, String role);
 }

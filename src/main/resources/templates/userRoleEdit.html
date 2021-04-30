@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить роль пользователя</title>
+</head>
+<body>
+<form method="post">
+    <select th:id="roleName" th:class="roleName" th:name="roleName">
+        <option
+                th:each="role:${userRoleSet}"
+                th:text="${role.roleName}"
+                th:value="${role.roleName}"
+                th:selected="${role.equals(user.get().getUserRole())}"
+        >
+        </option>
+    </select>
+    <input type="submit" value="Обновить">
+</form>
+</body>
+</html>
+
+

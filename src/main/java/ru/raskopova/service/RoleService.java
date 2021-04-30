@@ -2,13 +2,11 @@ package ru.raskopova.service;
 
 import ru.raskopova.model.entity.Role;
 
-public interface RoleService {
+import java.util.Set;
 
+public interface RoleService {
     /**
-     * добавляет роль в бд
-     *
-     * @param role
-     * @return
+     * возвращает лист ролей
      */
-    Role addRole(Role role);
+    Set<Role> getAllRoles();
 }
