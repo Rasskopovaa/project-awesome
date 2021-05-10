@@ -19,22 +19,25 @@ public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
 
-    @GetMapping("/users/{username}/edit")
+    @GetMapping("/admin/users/{username}/edit")
     public String getUser(@PathVariable(value = "username") String username, Model model) {
-        Optional<User> user = userService.getByUsername(username);
+        if (!(userService.findByUsername(username).isPresent())) {
+            model.addAttribute("userError", "Такой пользователь не найден!");
+        }
+        Optional<User> user = userService.findByUsername(username);
         model.addAttribute("user", user);
         model.addAttribute("userRoleSet", roleService.getAllRoles());
         return "userRoleEdit";
     }
 
-    @PostMapping("/users/{username}/edit")
+    @PostMapping("/admin/users/{username}/edit")
     public String updateUser(@PathVariable(value = "username") String username,
                              @RequestParam(value = "roleName") String roleName) {
         userService.updateUserRole(username, roleName);
         return "userList";
     }
 
-    @GetMapping("/users")
+    @GetMapping("/admin/users")
     public String getUserList(Model model) {
         model.addAttribute("userList", userService.getAllUsers());
         return "userList";

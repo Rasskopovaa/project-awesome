@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Редактирование книги</title>
-</head>
+      <head>
+          <meta charset="UTF-8">
+          <title>Редактирование книги</title>
+      </head>
 <body>
-
 <form method="post">
     <input type="text" th:value="${book.bookName}" id="bookName" name="bookName"><BR>
     <input type="submit" value="Обновить">
 </form>
-
-<form method="post" th:action="@{/books/{id}/remove(id=${book.getId()})}">
+<form method="post" th:action="@{/admin/books/{id}/edit/remove(id=${book.getId()})}">
     <button type="submit"> Удалить</button>
 </form>
-
 </body>
 </html>

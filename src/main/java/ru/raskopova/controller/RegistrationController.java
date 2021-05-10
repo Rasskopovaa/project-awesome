@@ -28,12 +28,12 @@ public class RegistrationController {
             model.addAttribute("passwordError", "Пароли не совпадают!");
             return "registration";
         }
-        if ((userService.getByUsername(username).isPresent())) {
+        if ((userService.findByUsername(username).isPresent())) {
             model.addAttribute("loginError", "Такой пользователь уже есть!");
             return "registration";
         }
-        userService.addUser(username, password);
-        return "addBook";
+        userService.createUser(username, password);
 
+        return "userBooks";
     }
 }

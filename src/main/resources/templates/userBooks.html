@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+</head>
+<body>
+<div sec:authorize="hasAuthority('USER')">
+    <form action="/books">
+        <h3>Список книг</h3>
+        <ul th:each="book: ${bookList}">
+            <li th:text="${book.getBookName()}"></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

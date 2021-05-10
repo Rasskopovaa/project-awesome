@@ -23,40 +23,46 @@ public class BookController {
         return "index";
     }
 
-    @GetMapping("/books")
+    @GetMapping("/admin/books")
     public String getAllBook(Model model) {
         model.addAttribute("bookList", bookService.getAllBooks());
         return "addBook";
     }
 
-    @GetMapping("/books/{id}/edit")
+    @GetMapping("/user/books")
+    public String getBooks(Model model) {
+        model.addAttribute("bookList", bookService.getAllBooks());
+        return "userBooks";
+    }
+
+    @GetMapping("/admin/books/{id}/edit")
     public String getBook(@PathVariable(value = "id") int id, Model model) {
         Book book = bookService.getBookById(id);
         model.addAttribute("book", book);
         return "mainBook";
     }
 
-    @PostMapping("/books/{id}/edit")
+    @PostMapping("/admin/books/{id}/edit")
     public String updateBook(@PathVariable(value = "id") int id,
                              @RequestParam(value = "bookName") String name, Model model) {
         bookService.updateBook(name, id);
-        return "addBook";
+        return getAllBook(model);
     }
 
-    @PostMapping("/addBook")
+    @PostMapping("/admin/books/addBook")
     public String createBook(BookDTO bookDTO, Model model) {
         bookService.addBook(bookDTO);
         return "addBook";
     }
 
-    @GetMapping("/addBook")
+    @GetMapping("/admin/books/addBook")
     public String createBookForm() {
         return "addBook";
     }
 
-    @PostMapping("/books/{id}/remove")
-    public String deleteBook(@PathVariable(value = "id") int id) {
+    @PostMapping("/admin/books/{id}/edit/remove")
+    public String deleteBook(@PathVariable(value = "id") int id, Model model) {
         bookService.deleteBook(id);
-        return "addBook";
+        return getAllBook(model);
     }
 }

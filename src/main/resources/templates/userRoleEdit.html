@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <meta charset="UTF-8">
     <title>Изменить роль пользователя</title>
 </head>
 <body>
-<form method="post">
-    <select th:id="roleName" th:class="roleName" th:name="roleName">
-        <option
-                th:each="role:${userRoleSet}"
-                th:text="${role.roleName}"
-                th:value="${role.roleName}"
-                th:selected="${role.equals(user.get().getUserRole())}"
-        >
-        </option>
-    </select>
-    <input type="submit" value="Обновить">
-</form>
+<div sec:authorize="hasAuthority('ADMIN')">
+    <form method="post">
+        <p th:text="${userError}"></p>
+        <select th:id="roleName" th:class="roleName" th:name="roleName">
+            <option
+                    th:each="role:${userRoleSet}"
+                    th:text="${role.roleName}"
+                    th:value="${role.roleName}"
+                    th:selected="${role.equals(user.get().getUserRole())}">
+            </option>
+        </select>
+        <input type="submit" value="Обновить">
+    </form>
+</div>
 </body>
 </html>
 

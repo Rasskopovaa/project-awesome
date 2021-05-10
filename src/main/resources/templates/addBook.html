@@ -3,26 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Добавление новой книги</title>
+    <title>Список книг</title>
 </head>
 <body>
-<a href="/books">
+
+<a href="admin/books">
     <form action="/books">
         <h3>Список книг</h3>
         <ul th:each="book: ${bookList}">
-            <a th:href="@{/books/{id}/edit(id=${book.getId()})}">
+            <a th:href="@{/admin/books/{id}/edit(id=${book.getId()})}">
                 <li th:text="${book.getBookName()}"></li>
             </a>
         </ul>
     </form>
 </a>
-
-<form method="post" action="/addBook">
+<form method="post" action="admin/books/addBook">
     <input type="text" id="bookName" name="bookName"><BR>
     <input type="submit" value="Добавить"> <BR>
 </form>
-
-<a href="/users">Редактировать пользователя</a>
+<a href="/admin/users">Редактировать пользователя</a>
 
 </body>
 </html>
