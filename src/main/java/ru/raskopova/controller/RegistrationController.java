@@ -33,7 +33,6 @@ public class RegistrationController {
             return "registration";
         }
         userService.createUser(username, password);
-
-        return "userBooks";
+        return "successReg";
     }
 }

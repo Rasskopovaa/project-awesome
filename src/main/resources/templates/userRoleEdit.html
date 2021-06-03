@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+>
 
 <head>
     <meta charset="UTF-8">
     <title>Изменить роль пользователя</title>
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-<div sec:authorize="hasAuthority('ADMIN')">
     <form method="post">
         <p th:text="${userError}"></p>
         <select th:id="roleName" th:class="roleName" th:name="roleName">
@@ -20,7 +20,6 @@
         </select>
         <input type="submit" value="Обновить">
     </form>
-</div>
 </body>
 </html>
 

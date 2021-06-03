@@ -1,7 +1,6 @@
 package ru.raskopova.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import ru.raskopova.model.dto.BookDTO;
 import ru.raskopova.model.entity.Book;
 import ru.raskopova.service.BookService;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class BookController {
@@ -29,10 +27,10 @@ public class BookController {
         return "addBook";
     }
 
-    @GetMapping("/user/books")
+    @GetMapping("/books")
     public String getBooks(Model model) {
         model.addAttribute("bookList", bookService.getAllBooks());
-        return "userBooks";
+        return "successReg";
     }
 
     @GetMapping("/admin/books/{id}/edit")
@@ -52,11 +50,11 @@ public class BookController {
     @PostMapping("/admin/books/addBook")
     public String createBook(BookDTO bookDTO, Model model) {
         bookService.addBook(bookDTO);
-        return "addBook";
+        return getAllBook(model);
     }
 
     @GetMapping("/admin/books/addBook")
-    public String createBookForm() {
+    public String createBookForm(Model model) {
         return "addBook";
     }
 

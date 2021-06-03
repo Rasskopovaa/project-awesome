@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
-      <head>
-          <meta charset="UTF-8">
-          <title>Редактирование книги</title>
-      </head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование книги</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
 <body>
 <form method="post">
     <input type="text" th:value="${book.bookName}" id="bookName" name="bookName"><BR>

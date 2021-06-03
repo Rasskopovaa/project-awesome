@@ -1,3 +1,4 @@
+/*
 package ru.raskopova.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -31,3 +32,4 @@ public class AuthorizationController {
     }
 
 }
+*/

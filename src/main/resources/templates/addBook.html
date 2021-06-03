@@ -1,27 +1,25 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Список книг</title>
+    <title>Главная страница администратора</title>
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-
-<a href="admin/books">
-    <form action="/books">
-        <h3>Список книг</h3>
-        <ul th:each="book: ${bookList}">
-            <a th:href="@{/admin/books/{id}/edit(id=${book.getId()})}">
-                <li th:text="${book.getBookName()}"></li>
-            </a>
-        </ul>
-    </form>
-</a>
-<form method="post" action="admin/books/addBook">
-    <input type="text" id="bookName" name="bookName"><BR>
-    <input type="submit" value="Добавить"> <BR>
+<form action="/admin/books">
+    <h3>Список книг</h3>
+    <ul th:each="book: ${bookList}">
+        <a th:href="@{/admin/books/{id}/edit(id=${book.getId()})}">
+            <li th:text="${book.getBookName()}"></li>
+        </a>
+    </ul>
 </form>
-<a href="/admin/users">Редактировать пользователя</a>
-
+<hr>
+<form method="post" action="/admin/books/addBook">
+    <input type="text" id="bookName" name="bookName"><BR>
+    <input class="btn" type="submit" value="Добавить"> <BR> <BR>
+    <hr>
+</form>
+<button><a href="/admin/users">Редактировать пользователя</a></button>
 </body>
 </html>
