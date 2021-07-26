@@ -10,7 +10,6 @@ import ru.raskopova.repository.BookRepository;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,8 +31,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getBookById(Integer id) {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        return optionalBook.get();
+        return bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override

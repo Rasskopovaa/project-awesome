@@ -13,7 +13,7 @@ public interface UserService {
      * @param username
      * @param password
      */
-    void addUser(String username, String password);
+    void createUser(String username, String password);
 
     /**
      * возвращает юзера по имени
@@ -21,7 +21,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    Optional<User> getByUsername(String username);
+    Optional<User> findByUsername(String username);
 
     /**
      * проверяет есть ли такой юзер в бд при авторизации,проверяет введённый пароль

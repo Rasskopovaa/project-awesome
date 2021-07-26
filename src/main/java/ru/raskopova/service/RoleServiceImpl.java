@@ -13,12 +13,6 @@ import java.util.stream.Collectors;
 public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
-
-    @Override
-    public Role addRole(Role role) {
-        return roleRepository.save(role);
-    }
-
     @Override
     public Set<Role> getAllRoles() {
         return roleRepository.findAll().stream().collect(Collectors.toSet());
