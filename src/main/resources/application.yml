@@ -13,8 +13,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/BookShop
     username: postgres
     password: postgres
-
-
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate.ddl-auto: none
+  liquibase:
+    change-log: 'classpath:db-migrations/changelog.xml'
 config:
   security:
     secret: "GJDUWE9REC"

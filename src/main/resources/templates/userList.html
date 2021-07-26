@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    <a href="/admin/users">
-        <form action="/admin/users">
-            <h3>Список пользователей</h3>
-            <ul th:each="user: ${userList}">
-                <a th:href="@{/admin/users/{username}/edit(username=${user.getUsername()})}">
-                    <li th:text="${user.getUsername()}"></li>
-                </a>
-            </ul>
-        </form>
-    </a>
-
+<a href="/admin/users">
+    <form action="/admin/users">
+        <h3>Список пользователей</h3>
+        <ul th:each="user: ${userList}">
+            <a th:href="@{/admin/users/{username}/edit(username=${user.getUsername()})}">
+                <li th:text="${user.getUsername()}"></li>
+            </a>
+        </ul>
+    </form>
+</a>
+<BR>
+<a href="#" onclick="history.back();return false;">Назад</a>
 </body>
 </html>

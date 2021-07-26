@@ -19,7 +19,7 @@ import ru.raskopova.repository.RoleRepository;
 import ru.raskopova.repository.UserRepository;
 
 import java.util.Locale;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Slf4j
 @Component
@@ -35,15 +35,15 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String login = authentication.getName();
         String password = passwordEncoder.encode(authentication.getCredentials().toString()).toLowerCase(Locale.ROOT);
 
-        ru.raskopova.model.entity.User user = userRepository.findByUsername(login).orElseThrow(NoSuchElementException::new);
-        if (user == null) {
+        Optional<ru.raskopova.model.entity.User> user = userRepository.findByUsername(login);
+        if (user.isEmpty()) {
             throw new BadCredentialsException("Неизвестный логин пользователя: " + login);
         }
-        if (!password.equals(user.getPassword())) {
+        if (!password.equals(user.get().getPassword())) {
             throw new BadCredentialsException(("Неверный пароль!"));
         }
 
-        String role = Roles.getRoleById(user.getUserRole().getId()).get().name();
+        String role = Roles.getRoleById(user.get().getUserRole().getId()).get().name();
 
         if (role == null) {
             ErrorMessage errorMessage = new ErrorMessage(-2, "Для пользователя: " + login + " не удалось определить роль");
@@ -51,8 +51,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
 
         UserDetails principal = User.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
+                .username(user.get().getUsername())
+                .password(user.get().getPassword())
                 .roles(role)
                 .build();
 
