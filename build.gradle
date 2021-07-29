@@ -3,15 +3,13 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
     id "io.freefair.lombok" version "${lombokVersion}"
+    id 'org.liquibase.gradle' version '2.0.4'
 }
-
 group 'org.example'
 version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }
-
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-jpa"
     implementation "org.springframework.boot:spring-boot-starter-data-rest"
@@ -19,10 +17,24 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "io.springfox:springfox-boot-starter:${springBootStarter}"
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.4.RELEASE'
+    implementation("org.liquibase:liquibase-core:${liquibaseVersion}")
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.springframework.security:spring-security-test"
     runtimeOnly("org.postgresql:postgresql")
-
-
+    liquibaseRuntime("org.liquibase:liquibase-core:${liquibaseVersion}")
+    liquibaseRuntime("org.postgresql:postgresql:42.2.20")
+}
+liquibase {
+    activities {
+        main {
+            changeLogFile 'src/main/resources/db-migrations/db-snapshot.xml'
+            referenceUrl 'jdbc:postgresql://localhost:9111/postgres'
+            url 'jdbc:postgresql://localhost:9111/postgres'
+            username 'postgres'
+            password 'postgres'
+            referenceUsername 'postgres'
+            referencePassword 'postgres'
+            defaultSchemaName 'public'
+        }
+    }
 }
